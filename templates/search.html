@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+
+  <h3 class="text-muted" style="letter-spacing: 2px;">Results of {{ keyword }}</h3>
+  <div class="row mb-2">
+    {% if blogs %}
+    {% for i in blogs %}
+      
+      <div class="col-md-6">
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3><a href="{% url 'blogs' i.slug%}">{{ i.title }}</a></h3>
+            <small class="mb-1 text-muted">{{ i.created_at | timesince}} ago | {{ i.author }}</small>
+            <p class="card-text"> {{ i.blog_body }} </p>
+          </div>
+        </div>
+      </div>
+      
+    {% endfor %}
+    {% else %}
+      <p style="color: red;">NO POST FOUND!</p>
+    {% endif %}
+  </div>
+
+
+</div>
+
+
+{% endblock %}
